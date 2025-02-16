@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поиск</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #90AEB9; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .header-title {
+            margin: 0;
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .search-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .search-container h2 {
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .search-container form label {
+            display: block;
+            margin: 10px 0 5px;
+            text-align: left;
+        }
+
+        .search-container form input,
+        .search-container form button {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .search-container form button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .search-container form button:hover {
+            background-color: #45a049;
+        }
+
+        #map {
+            height: 400px;
+            width: 100%;
+            margin-top: 20px;
+            border-radius: 16px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 0 20px;
+        }
+
+        .footer-section {
+            flex: 1;
+            text-align: center;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .footer-section p {
+            font-size: 0.9em;
+            margin: 5px 0;
+        }
+
+        .footer-section a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1 class="header-title">Stay Smart</h1>
+    </header>
+
+    <div class="search-container">
+        <h2>Поиск</h2>
+        <form id="searchForm">
+            <label for="city">Город:</label>
+            <input type="text" id="city" name="city" required>
+            <label for="hotel">Отель:</label>
+            <input type="text" id="hotel" name="hotel" required>
+            <label for="checkin">Дата заезда:</label>
+            <input type="date" id="checkin" name="checkin" required>
+            <label for="checkout">Дата выезда:</label>
+            <input type="date" id="checkout" name="checkout" required>
+            <label for="guests">Количество гостей:</label>
+            <input type="number" id="guests" name="guests" required>
+            <label for="rooms">Количество номеров:</label>
+            <input type="number" id="rooms" name="rooms" required>
+            <button type="submit">Поиск</button>
+        </form>
+    </div>
+
+    
+    <div id="map"></div>
+
+    
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        
+        var map = L.map('map').setView([59.208429, 39.892744], 13);
+
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            
+        }).addTo(map);
+    </script>
+
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section company">
+            <h3>О нас</h3>
+            <p>Stay Smart — удобный сервис для бронирования жилья.</p>
+        </div>
+        <div class="footer-section contacts">
+            <h3>Контакты</h3>
+            <p>Адрес: ул.Гагарина 35, Вологда, Россия</p>
+            <p>Телефон: +7(911)-592-30-82</p>
+            <p>Email: latkinewg@yandex.ru</p>
+        </div>
+        <div class="footer-section social">
+            <h3>Социальные сети</h3>
+            <p>
+                <a href="#">Вконтакте</a> |
+                <a href="#">Telegram</a> |
+                <a href="#">Instagram</a>
+            </p>
+        </div>
+    </div>
+</footer>
+
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Поиск запущен');
+        });
+    </script>
+</body>
+</html>
+
